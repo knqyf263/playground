@@ -1,0 +1,53 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = ">=2.0.0,<2.1.0"
+djangorestframework = "*"
+djangorestframework-jwt = "*"
+django-cors-headers = "*"
+requests = "*"
+pyyaml = "*"
+"psycopg2-binary" = "*"
+django-postgres-extra = {editable = true,ref = "master",git = "https://github.com/SectorLabs/django-postgres-extra"}
+"oauth2" = "*"
+retry = "*"
+sentry-sdk = "*"
+sendgrid = "*"
+celery = {extras = ["redis"],editable = true,ref = "4d907414aa3932ec102ada8d48fa2471673ff43a",git = "https://github.com/celery/celery.git"}
+boto3 = "*"
+pycurl = "*"
+django-celery-beat = "*"
+xmltodict = "*"
+django-redis-cache = "*"
+hiredis = "*"
+flower = "*"
+django-silk = "*"
+django-extensions = "*"
+gunicorn = "*"
+
+[dev-packages]
+factory-boy = "*"
+coverage = "*"
+dredd-hooks = "*"
+black = "==18.6b4"
+autoflake = "*"
+isort = "*"
+pre-commit = "*"
+pyparsing = "*"
+pydot = "*"
+tblib = "*"
+more-itertools = "*"
+flake8 = "*"
+selenium = "*"
+
+[requires]
+python_version = "3.7"
+
+[scripts]
+fmt = "black --py36 ."
+lint = "flake8"
+unused = "autoflake -i --remove-all-unused-imports --remove-unused-variables --exclude .venv -r ."
+imports = "isort --recursive --force-single-line --skip .venv ."
