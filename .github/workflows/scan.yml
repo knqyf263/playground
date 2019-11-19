@@ -1,0 +1,17 @@
+on: [push]
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    name: scan
+    steps:
+    - uses: actions/checkout@master
+      with:
+        ref: master
+    - name: Build the image
+      run: docker build -t test:1.2.3 .
+    - name: Scan
+      uses: knqyf263/playground@v0.0.1
+      with:
+        image_name: 'test:1.2.3'
+        args: '--no-progress'
