@@ -1,0 +1,15 @@
+name: 'Trivy'
+description: 'Scan container images using Trivy'
+author: 'knqyf263'
+inputs:
+  args:
+    description: 'arguments passed to Trivy'
+    required: true
+    default: 'World'
+  image_name:
+    description: 'the scan target'
+runs:
+  using: 'docker'
+  image: 'aquasec/trivy'
+  args:
+    - ${{ inputs.args }} ${{ inputs.image_name }}
