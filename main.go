@@ -1,50 +1,26 @@
 package main
 
-import (
-	"fmt"
+import "fmt"
 
-	"github.com/google/wire"
-)
-
-var SuperSet = wire.NewSet(
-	NewMessage,
-	NewGreeter,
-	NewEvent,
-)
-
-type Message string
-
-func NewMessage() Message {
-	return "Hello World!"
+type Company interface {
+	Info(name string) (zip, address, phone string, employee int)
 }
 
-type Greeter struct {
-	Message Message
+type IsraeliCompany struct{}
+
+func (c IsraeliCompany) Info(name string) (string, string, string, int) {
+	// select company information from database and return them
+	return "Zip Code", "Address", "Phone", 0
 }
 
-func NewGreeter(m Message) Greeter {
-	return Greeter{Message: m}
+type Foo struct {
+	Company Company
 }
 
-func (g Greeter) Greet() Message {
-	return g.Message
-}
-
-type Event struct {
-	Greeter Greeter
-}
-
-func NewEvent(g Greeter) Event {
-	return Event{Greeter: g}
-}
-
-func (e Event) Start() {
-	msg := e.Greeter.Greet()
-	fmt.Println(msg)
+func (f Foo) DoSomething() {
+	fmt.Println(f.Company.Info("Aqua"))
 }
 
 func main() {
-	event := InitializeEvent()
 
-	event.Start()
 }
